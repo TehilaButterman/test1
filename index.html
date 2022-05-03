@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>your online shopping</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <div>
+        <h1>Add Product</h1>
+    </div>
+
+    <div>
+        <hr>
+        <select class="form-select" aria-label="Default select example" style="width:500px; margin:0 auto" id="selsct">
+            <option selected>Select a category</option>
+            <option value="dairy">dairy</option>
+            <option value="Meat">Meat</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Basic">Basic</option>
+        </select>
+        <br>
+        <br>
+
+    </div>
+    <div class="input-group mb-3" style="width:1000px; margin:0 auto">
+        <h6>product name</h6> <input type="text" class="form-control" placeholder="product name"
+            aria-label="product name" id="productName">
+        <h6>product price</h6><input type="number" class="form-control" placeholder="product price"
+            aria-label="product price" id="productPrice">
+        <h6>product image</h6> <input type="text" class="form-control" placeholder="product image"
+            aria-label="product image" id="productImage">
+
+    </div>
+    <hr>
+    <button class="btn btn-success" onclick="getVAlues()" style="width:200px; margin-left:680px">Add
+        product</button>
+    <div>
+
+    </div>
+    <div id="myCartDiv"></div>
+    <script>
+        let myCart = []
+        let category = document.getElementById("selsct")
+
+        function getVAlues() {
+            myCartDiv.innerHTML +=
+                `<div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="${productImage.value}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${productName.value}</h5>
+                            <p class="card-text">Price: ${productPrice.value}$.</p>
+                            <p class="card-text">Category: ${category.value}.</p>
+                            <button onclick="clear()" id="toClear">Clear Product</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+`
+            productName.value = ''
+            productPrice.value = ''
+            productImage.value = ''
+            category.value = 'Select a category'
+
+
+            myCart.push({
+                category: category.value,
+                name: productName.value,
+                price: productPrice.value,
+                img: productImage.value
+            })
+        }
+    </script>
+</body>
+
+</html>
